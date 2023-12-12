@@ -8,7 +8,7 @@ import numpy as np
 from streamlit_option_menu import option_menu
 from PIL import Image
 
-bank = Image.open(r'C:\Users\mi\Desktop\МОВС\Прикладной Python\HW1\bank-customers-and-staff-serving-clients-vector-33337933.jpg')
+bank = Image.open(r'bank-customers-and-staff-serving-clients-vector-33337933.jpg')
 
 
 

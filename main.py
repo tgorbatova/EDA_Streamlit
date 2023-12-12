@@ -20,21 +20,21 @@ with cent_co:
     st.image(bank)
 
 
-clients = pd.read_csv(r'data\D_clients.csv')
+clients = pd.read_csv('data/D_clients.csv')
 clients.rename(columns={'ID':'ID_CLIENT'}, inplace=True)
-job = pd.read_csv(r'data\D_job.csv')
-last_credit = pd.read_csv(r'data\D_last_credit.csv')
+job = pd.read_csv('data/D_job.csv')
+last_credit = pd.read_csv('data/D_last_credit.csv')
 
-close_loan = pd.read_csv(r'data\D_close_loan.csv')
-loan = pd.read_csv(r'data\D_loan.csv')
+close_loan = pd.read_csv('data/D_close_loan.csv')
+loan = pd.read_csv('data/D_loan.csv')
 
 loan = loan.merge(close_loan, on='ID_LOAN', how='left')
 
 data = clients.merge(loan.groupby('ID_CLIENT')['ID_LOAN'].agg(list), on='ID_CLIENT', how='left')
 data = data.merge(loan.groupby('ID_CLIENT')['CLOSED_FL'].agg(list), on='ID_CLIENT', how='left')
 
-salary = pd.read_csv(r'data\D_salary.csv')
-target = pd.read_csv(r'data\D_target.csv')
+salary = pd.read_csv('data/D_salary.csv')
+target = pd.read_csv('data/D_target.csv')
 
 dfs = [data, job, last_credit, salary, target]
 data = reduce(lambda left,right: pd.merge(left,right,on='ID_CLIENT'), dfs)
